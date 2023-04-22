@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,36 +16,23 @@
             text-align: center;
         }
 
-        .button-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .image-container {
+            display: flex;
+            gap: 20px;
         }
 
-        button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #008CBA;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        img {
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #006994;
+            width: 200px; /* Adjust the width as needed */
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <!-- Change the button names between the opening and closing button tags -->
-        
-    <button onclick="openPDF('https://drive.google.com/file/d/1KE4myv6tFePGKPVhfyMem7D2uwaZ7RHa/view?usp=sharing')">Technische Mathematik Metall</button>
-    <button onclick="openPDF('https://drive.google.com/file/d/1gAcBfAbHnWN6yBxzWJRdpuep3dV0dORF/view?usp=sharing')">Lösungsbuch</button>
+    <div class="image-container">
+        <!-- Replace the src attribute with your image URLs -->
+        <img src="trm.png" alt="Image 1" onclick="openPDF('https://drive.google.com/file/d/1KE4myv6tFePGKPVhfyMem7D2uwaZ7RHa/view?usp=sharing')" />
+        <img src="loesungen.png" alt="Image 2" onclick="openPDF('https://drive.google.com/file/d/1gAcBfAbHnWN6yBxzWJRdpuep3dV0dORF/view?usp=sharing')" />
     </div>
 
     <script>
