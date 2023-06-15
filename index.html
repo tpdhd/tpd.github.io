@@ -15,6 +15,7 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            flex-wrap: wrap; /* Added to allow multiple rows */
         }
 
         .image-container {
@@ -23,7 +24,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
-            position: relative; /* Added for the overlay */
+            position: relative;
         }
 
         .image-container img {
@@ -37,7 +38,7 @@
             background-color: #4d4d4d;
         }
 
-        .image-overlay { /* New overlay style */
+        .image-overlay {
             display: none;
             position: absolute;
             top: 0;
@@ -51,7 +52,7 @@
             flex-direction: column;
         }
 
-        .image-overlay.active { /* Show overlay when active */
+        .image-overlay.active {
             display: flex;
         }
 
@@ -91,16 +92,44 @@
         <img src="loesungen.png" alt="Image 2">
         <div class="image-overlay">
             <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>                      
+            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
+            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
+        </div>
+    </div>
+
+    <!-- Adding three more images -->
+    <div class="image-container">
+        <img src="dummy1.png" alt="Image 3">
+        <div class="image-overlay">
+            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
+            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
+            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="dummy2.png" alt="Image 4">
+        <div class="image-overlay">
+            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
+            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
+            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="dummy3.png" alt="Image 5">
+        <div class="image-overlay">
+            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
+            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
             <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === 'D') {
-                var overlays = document.querySelectorAll('.image-overlay');
-                overlays.forEach(function(overlay) {
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                const overlays = document.querySelectorAll('.image-overlay');
+                overlays.forEach((overlay) => {
                     overlay.classList.toggle('active');
                 });
             }
@@ -108,7 +137,3 @@
     </script>
 </body>
 </html>
-
-                             
-                             
-                             
