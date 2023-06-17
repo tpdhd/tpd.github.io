@@ -152,6 +152,32 @@
                 });
             }
         });
+    <img id="secret-image" src="mj_bg.jpg" alt="A big picture" style="position:absolute; top:0; left:0; z-index:1000;" />
+
+    <script>
+        const secretImage = document.getElementById('secret-image');
+
+        secretImage.addEventListener('click', function(e) {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left; //x position within the element.
+            const y = e.clientY - rect.top;  //y position within the element.
+
+            const noseXStart = 150, noseXEnd = 200;
+            const noseYStart = 200, noseYEnd = 250;
+
+            if (x >= noseXStart && x <= noseXEnd && y >= noseYStart && y <= noseYEnd) {
+                secretImage.style.display = 'none'; // Hide the big picture when the nose is clicked
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'D') {
+                const overlays = document.querySelectorAll('.image-overlay');
+                overlays.forEach((overlay) => {
+                    overlay.classList.toggle('active');
+                });
+            }
+        });
     </script>
 </body>
 </html>
