@@ -19,7 +19,7 @@
         }
 
         .image-container {
-            display: inline-block;
+            display: none; /* Initially hidden */
             margin: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
             cursor: pointer;
@@ -76,102 +76,38 @@
         .image-overlay button:nth-child(3) {
             background: #cc0000;
         }
+
+        #secret-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%; /* make it cover the entire screen */
+            height: 100%; /* make it cover the entire screen */
+        }
     </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="trm.png" alt="Image 1">
-        <div class="image-overlay">
-            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-        </div>
-    </div>
+    <img id="secret-image" src="mj_bg.png" alt="A big picture" />
 
     <div class="image-container">
-        <img src="loesungen.png" alt="Image 2">
-        <div class="image-overlay">
-            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-        </div>
+        <!-- your image containers and their contents here -->
     </div>
-
-    <!-- Adding three more images -->
-    <div class="image-container">
-        <img src="tpd1.jpg" alt="Image 3">
-        <div class="image-overlay">
-            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-        </div>
-    </div>
-
-    <div class="image-container">
-        <img src="tpd2.jpg" alt="Image 4">
-        <div class="image-overlay">
-            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-        </div>
-    </div>
-
-    <div class="image-container">
-        <img src="fk_metall.jpg" alt="Image 5">
-        <div class="image-overlay">
-            <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-            <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-            <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-        </div>
-    </div>
-    
-    <div class="image-container">
-    <img src="tb.jpg" alt="Image 6">
-    <div class="image-overlay">
-        <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-        <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-        <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-    </div>
-</div>
-        
-    <div class="image-container">
-    <img src="tb_formeln.jpg" alt="Image 6">
-    <div class="image-overlay">
-        <button onclick="window.open('https://url-to-low-quality-pdf.com', '_blank')">Low Quality (1MB)</button>
-        <button onclick="window.open('https://url-to-medium-quality-pdf.com', '_blank')">Medium Quality (2MB)</button>
-        <button onclick="window.open('https://url-to-high-quality-pdf.com', '_blank')">High Quality (3MB)</button>
-    </div>
-</div>
-
-    <script>
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                const overlays = document.querySelectorAll('.image-overlay');
-                overlays.forEach((overlay) => {
-                    overlay.classList.toggle('active');
-                });
-            }
-        });
-    <img id="secret-image" src="mj_bg.png" alt="A big picture" style="position:absolute; top:0; left:0; z-index:1000;" />
 
     <script>
         const secretImage = document.getElementById('secret-image');
+        const imageContainers = document.querySelectorAll('.image-container');
 
         secretImage.addEventListener('click', function(e) {
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left; //x position within the element.
-            const y = e.clientY - rect.top;  //y position within the element.
+            secretImage.style.display = 'none'; // Hide the big picture when clicked
 
-            const noseXStart = 150, noseXEnd = 200;
-            const noseYStart = 200, noseYEnd = 250;
-
-            if (x >= noseXStart && x <= noseXEnd && y >= noseYStart && y <= noseYEnd) {
-                secretImage.style.display = 'none'; // Hide the big picture when the nose is clicked
-            }
+            imageContainers.forEach((container) => {
+                container.style.display = 'inline-block'; // Show the images after hiding the big picture
+            });
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'D') {
+            if (e.key.toLowerCase() === 'd') { // Using 'toLowerCase' to handle both cases
                 const overlays = document.querySelectorAll('.image-overlay');
                 overlays.forEach((overlay) => {
                     overlay.classList.toggle('active');
