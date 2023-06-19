@@ -15,11 +15,11 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            flex-wrap: wrap; /* Added to allow multiple rows */
+            flex-wrap: wrap;
         }
 
         .image-container {
-            display: none; /* Initially hidden */
+            display: none;
             margin: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
             cursor: pointer;
@@ -65,25 +65,13 @@
             cursor: pointer;
         }
 
-        .image-overlay button:nth-child(1) {
-            background: #4d4d4d;
-        }
-
-        .image-overlay button:nth-child(2) {
-            background: #0066cc;
-        }
-
-        .image-overlay button:nth-child(3) {
-            background: #cc0000;
-        }
-
         #secret-image {
             position: absolute;
             top: 0;
             left: 0;
             z-index: 1000;
-            width: 100%; /* make it cover the entire screen */
-            height: 100%; /* make it cover the entire screen */
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -99,15 +87,31 @@
         const imageContainers = document.querySelectorAll('.image-container');
 
         secretImage.addEventListener('click', function(e) {
-            secretImage.style.display = 'none'; // Hide the big picture when clicked
+            const rect = secretImage.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-            imageContainers.forEach((container) => {
-                container.style.display = 'inline-block'; // Show the images after hiding the big picture
-            });
+            // Define the rectangle
+            const rectangle = {
+                x: 745,
+                y: 816,
+                width: 50,
+                height: 50
+            };
+
+            // Check if the click was within the rectangle
+            if (x >= rectangle.x && x <= rectangle.x + rectangle.width &&
+                y >= rectangle.y && y <= rectangle.y + rectangle.height) {
+                secretImage.style.display = 'none';
+
+                imageContainers.forEach((container) => {
+                    container.style.display = 'inline-block';
+                });
+            }
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key.toLowerCase() === 'd') { // Using 'toLowerCase' to handle both cases
+            if (e.key.toLowerCase() === 'd') {
                 const overlays = document.querySelectorAll('.image-overlay');
                 overlays.forEach((overlay) => {
                     overlay.classList.toggle('active');
