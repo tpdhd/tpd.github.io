@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidden Books</title>
+    <title>virus</title>
     <style>
         #secret-page {
             position: absolute;
@@ -13,11 +13,73 @@
             background-size: cover;
             transition: opacity 2s;
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2em;
+            font-family: Arial, sans-serif;
+        }
+
+        .book-container {
+            margin: 1em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 0.5em;
+            max-width: 500px;
+        }
+
+        .book-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .book-description {
+            margin: 1em 0;
+        }
+
+        .book-download {
+            background-color: #4d4d4d;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 0.5em;
+            text-decoration: none;
+        }
+
+        .download-all {
+            background-color: #4d4d4d;
+            color: #fff;
+            padding: 1em 2em;
+            border-radius: 0.5em;
+            text-decoration: none;
+            margin-top: 2em;
+        }
     </style>
 </head>
 <body>
     <div id="secret-page"></div>
-    <!-- Rest of the site -->
+
+    <!-- Book 1 -->
+    <div class="book-container">
+        <div class="book-title">Book Title 1</div>
+        <div class="book-description">Short description about Book 1.</div>
+        <a href="book1.pdf" class="book-download" download>Download Book 1</a>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="book-container">
+        <div class="book-title">Book Title 2</div>
+        <div class="book-description">Short description about Book 2.</div>
+        <a href="book2.pdf" class="book-download" download>Download Book 2</a>
+    </div>
+
+    <!-- More books go here -->
+
+    <!-- Download all -->
+    <a href="all_books.zip" class="download-all" download>Download All Books</a>
+
     <script>
         let counter = 0;
         document.addEventListener('keydown', function(e) {
