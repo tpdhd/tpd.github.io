@@ -3,119 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sehr krasse Website</title>
+    <title>Hidden Books</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #FFFFFF;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            flex-wrap: wrap;
-        }
-
-        .image-container {
-            display: none;
-            margin: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-            position: relative;
-        }
-
-        .image-container img {
-            display: block;
-            max-width: auto;
-            max-height: 380px;
-        }
-
-        .image-container:hover {
-            transform: scale(1.07);
-            background-color: #4d4d4d;
-        }
-
-        .image-overlay {
-            display: none;
+        #secret-page {
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #FFF;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .image-overlay.active {
-            display: flex;
-        }
-
-        .image-overlay button {
-            margin: 10px;
-            padding: 10px 20px;
-            border: none;
-            background: #4d4d4d;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        #secret-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1000;
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            background: url('mj_bg.png') center center no-repeat;
+            background-size: cover;
+            transition: opacity 2s;
         }
     </style>
 </head>
 <body>
-    <img id="secret-image" src="mj_bg.png" alt="A big picture" />
-
-    <div class="image-container">
-        <!-- your image containers and their contents here -->
-    </div>
-
+    <div id="secret-page"></div>
+    <!-- Rest of the site -->
     <script>
-        const secretImage = document.getElementById('secret-image');
-        const imageContainers = document.querySelectorAll('.image-container');
-
-        secretImage.addEventListener('click', function(e) {
-            const rect = secretImage.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Define the rectangle
-            const rectangle = {
-                x: 741,
-                y: 778,
-                width: 50,
-                height: 50
-            };
-
-            // Check if the click was within the rectangle
-            if (x >= rectangle.x && x <= rectangle.x + rectangle.width &&
-                y >= rectangle.y && y <= rectangle.y + rectangle.height) {
-                secretImage.style.display = 'none';
-
-                imageContainers.forEach((container) => {
-                    container.style.display = 'inline-block';
-                });
-            }
-        });
-
+        let counter = 0;
         document.addEventListener('keydown', function(e) {
-            if (e.key.toLowerCase() === 'd') {
-                const overlays = document.querySelectorAll('.image-overlay');
-                overlays.forEach((overlay) => {
-                    overlay.classList.toggle('active');
-                });
+            if (e.key === 'd') counter++;
+            if (e.key === 'l' && counter > 0) {
+                document.getElementById('secret-page').style.opacity = '0';
+                setTimeout(() => {
+                  document.getElementById('secret-page').style.display = 'none';
+                }, 2000); // 2 seconds same as transition duration
             }
         });
     </script>
